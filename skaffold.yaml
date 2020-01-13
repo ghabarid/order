@@ -1,0 +1,21 @@
+apiVersion: skaffold/v1
+kind: Config
+metadata:
+  name: order
+build:
+  artifacts:
+  - image: order
+    context: target/docker/order/latest/build
+deploy:
+  kubectl:
+    manifests:
+    - target/classes/META-INF/fabric8/kubernetes/order-deployment.yml
+    - target/classes/META-INF/fabric8/kubernetes/order-service.yml
+    - target/classes/META-INF/fabric8/openshift/order-deploymentconfig.yml
+    - target/classes/META-INF/fabric8/openshift/order-route.yml
+    - target/classes/META-INF/fabric8/openshift/order-service.yml
+    - target/fabric8/applyJson/myproject/deploymentconfig-order.json
+    - target/fabric8/applyJson/myproject/service-order-1.json
+    - target/fabric8/applyJson/myproject/service-order.json
+    - target/fabric8/helm/kubernetes/order/templates/order-deployment.yaml
+    - target/fabric8/helm/kubernetes/order/templates/order-service.yaml
