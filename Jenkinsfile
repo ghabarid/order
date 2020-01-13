@@ -6,9 +6,14 @@ pipeline {
         sh 'mvn clean package'
       }
     }
-    stage('Fabric') {
+    stage('Fabric - Build') {
       steps {
         sh 'mvn fabric8:build'
+      }
+    }
+    stage('Fabric Deploy') {
+      steps {
+        sh 'mvn fabric8:deploy'
       }
     }
   }
