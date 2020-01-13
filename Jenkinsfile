@@ -6,8 +6,10 @@ pipeline {
         sh 'mvn clean package'
       }
     }
-  }
-  environment {
-    maven = 'mvn'
+    stage('Fabric') {
+      steps {
+        sh 'mvn fabric8:build'
+      }
+    }
   }
 }
